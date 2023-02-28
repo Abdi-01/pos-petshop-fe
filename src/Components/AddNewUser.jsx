@@ -17,17 +17,22 @@ function AddNewUser() {
     const [phone, setPhone] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [role, setRole] = React.useState("");
+    let token = localStorage.getItem("petshop_login");
 
 
     const btnAddNewUser = async () => {
         try {
             let resp = await axios.post(`${API_URL}/user/register`, {
-                name: name,
+                name: name, 
                 email: email,
                 username: username,
                 phone: phone,
                 password: password,
                 role_id: parseInt(role)
+            }, {
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
             })
             console.log(`ini dari resp addnewuser`, resp);
             if (resp.data.success) {

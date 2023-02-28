@@ -5,9 +5,15 @@ import { API_URL } from '../helper';
 
 function TableUser(props) {
 
+    let token = localStorage.getItem("petshop_login");
+
     const onBtnDelete = async () => {
         try {
-            let res = await axios.patch(`${API_URL}/user/delete/${props.uuid}`)
+            let res = await axios.patch(`${API_URL}/user/delete/${props.uuid}`, {}, {
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            })
 
             alert(res.data.message)
             props.getAllUser()
