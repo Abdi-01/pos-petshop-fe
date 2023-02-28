@@ -10,6 +10,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { loginAction } from './Reducers/data';
 import React from 'react';
+import AddNewUser from './Components/AddNewUser';
 
 function App() {
 
@@ -38,9 +39,10 @@ function App() {
 
   return (
     <div>
+      <Navbar />
       <Routes>
-        
         <Route path='/user' element={<User />} />
+        <Route path='/addnewuser' element={<AddNewUser />} />
         <Route path='/' element={<LoginPage />} />
         <Route path='/landing' element={<LandingPage />} />
         <Route path='/addproduct' element={<AddProductPage />} />

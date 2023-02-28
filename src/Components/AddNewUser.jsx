@@ -30,10 +30,10 @@ function AddNewUser() {
                 role_id: parseInt(role)
             })
             console.log(`ini dari resp addnewuser`, resp);
-            if(resp.data.success){
+            if (resp.data.success) {
                 alert("registrasi berhasil");
-                navigate("/")
-                
+                navigate("/user")
+
             }
 
         } catch (error) {
@@ -49,7 +49,7 @@ function AddNewUser() {
                 <Heading size={"md"}>Add New User</Heading>
             </CardHeader>
             <CardBody>
-                <Grid templateColumns="repeat(3,1fr)" gap={6}>
+                <Grid templateColumns={{ sm: "repeat(1,1fr)", md: "repeat(2,1fr)", lg: "repeat(3,1fr)" }} gap={6}>
                     <GridItem>
                         <Heading size={"sm"} fontWeight="semibold" >Name</Heading>
                         <Input onChange={(e) => setName(e.target.value)} mt={"10px"} placeholder='Bryan Toretto' size={"md"} />
