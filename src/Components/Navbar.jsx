@@ -1,9 +1,14 @@
+// import { Container, Flex, Box, Button } from '@chakra-ui/react';
+import { Container } from '@chakra-ui/react';
 import React from 'react';
+// import { Link } from "react-router-dom";
 
-function Navbar() {
+function Navbar(props) {
     return (
-        <h1>Navbar</h1>
-    );
+        <Container>
+            
+        </Container>
+    )
 }
 
 export default Navbar;
