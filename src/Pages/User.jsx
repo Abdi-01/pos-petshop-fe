@@ -10,10 +10,15 @@ function NewUser() {
     const navigate = useNavigate()
 
     const [userList, setUserList] = React.useState([]);
+    let token = localStorage.getItem("petshop_login");
 
     const getAllUser = async () => {
         try {
-            let res = await axios.get(`${API_URL}/user/getalluser`);
+            let res = await axios.get(`${API_URL}/user/getalluser`, {
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            });
             console.log(`ini dari res`, res.data);
 
             setUserList(res.data)
