@@ -10,11 +10,11 @@ import { logoutAction } from '../Reducers/data';
 function Navbar(props) {
 
     const username = useSelector((state) => state.dataReducer.username);
-    console.log("username dari redux :", useSelector((state) => state.dataReducer));
+    const role_id = useSelector((state) => state.dataReducer.role_id);
+    console.log(`ini role_id useselector`, role_id);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
 
     const [isOpen, setIsOpen] = useState(false);
     const handleOpen = () => {
@@ -35,25 +35,35 @@ function Navbar(props) {
                             <DrawerBody>
                                 <DrawerBody mt='10'>
                                     <Link to="/landing">
-                                        <Button variant='ghost'>Dashboard </Button>
+                                        <Button onClick={handleClose} variant='ghost'>Dashboard </Button>
                                     </Link>
                                 </DrawerBody>
+                                {
+                                    role_id == 1 ? <DrawerBody>
+                                        <Link to='/addproduct'>
+                                            <Button  onClick={handleClose} variant='ghost'> Add New Product</Button>
+                                        </Link>
+                                    </DrawerBody> : null
+                                }
+
                                 <DrawerBody>
-                                    <Link to='/addproduct'>
-                                        <Button variant='ghost'> Add New Product</Button>
-                                    </Link>
+                                    <Button  onClick={handleClose} variant='ghost'> Transaction </Button>
                                 </DrawerBody>
-                                <DrawerBody>
-                                    <Button variant='ghost'> Transaction </Button>
-                                </DrawerBody>
-                                <DrawerBody>
-                                    <Link to='/user'>
-                                        <Button variant='ghost'> User Management </Button>
-                                    </Link>
-                                </DrawerBody>
-                                <DrawerBody>
-                                    <Button variant='ghost'> Reports </Button>
-                                </DrawerBody>
+
+                                {
+                                    role_id == 1 ? <DrawerBody>
+                                        <Link to='/user'>
+                                            <Button  onClick={handleClose} variant='ghost'> User Management </Button>
+                                        </Link>
+                                    </DrawerBody> : null
+                                }
+
+                                {
+                                    role_id == 1 ? <DrawerBody>
+                                        <Button  onClick={handleClose} variant='ghost'> Reports </Button>
+                                    </DrawerBody> : null
+                                }
+
                             </DrawerBody>
                         </DrawerContent>
                     </DrawerOverlay>
