@@ -41,26 +41,28 @@ function Navbar(props) {
                                 {
                                     role_id == 1 ? <DrawerBody>
                                         <Link to='/addproduct'>
-                                            <Button  onClick={handleClose} variant='ghost'> Add New Product</Button>
+                                            <Button onClick={handleClose} variant='ghost'> Add New Product</Button>
                                         </Link>
                                     </DrawerBody> : null
                                 }
 
                                 <DrawerBody>
-                                    <Button  onClick={handleClose} variant='ghost'> Transaction </Button>
+                                    <Link to="/transaction">
+                                        <Button onClick={handleClose} variant='ghost'> Transaction </Button>
+                                    </Link>
                                 </DrawerBody>
 
                                 {
                                     role_id == 1 ? <DrawerBody>
                                         <Link to='/user'>
-                                            <Button  onClick={handleClose} variant='ghost'> User Management </Button>
+                                            <Button onClick={handleClose} variant='ghost'> User Management </Button>
                                         </Link>
                                     </DrawerBody> : null
                                 }
 
                                 {
                                     role_id == 1 ? <DrawerBody>
-                                        <Button  onClick={handleClose} variant='ghost'> Reports </Button>
+                                        <Button onClick={handleClose} variant='ghost'> Reports </Button>
                                     </DrawerBody> : null
                                 }
 
