@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Container, Text, FormControl, Input, InputGroup, InputRightAddon, Button, Center, Alert, Flex } from '@chakra-ui/react';
+import { Box, Text, FormControl, Input, InputGroup, InputRightAddon, Button, Flex } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import axios from 'axios';
 import { API_URL } from '../helper';
@@ -41,7 +41,7 @@ const LoginPage = (props) => {
             }
             
         } catch (error) {
-            
+            console.log(error);
         }
     }
 

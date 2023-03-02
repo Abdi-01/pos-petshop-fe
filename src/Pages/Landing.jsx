@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, Button, Box, Drawer, DrawerOverlay, DrawerContent, DrawerCloseButton, DrawerBody, Input, InputGroup, InputLeftElement, Menu, MenuButton, MenuItem, MenuList, IconButton, Text, ButtonGroup, SimpleGrid } from '@chakra-ui/react';
+import { Flex, Button, Box, Drawer, DrawerOverlay, DrawerContent, DrawerCloseButton, DrawerBody, Input, Image, InputGroup, InputLeftElement, Menu, MenuButton, MenuItem, MenuList, IconButton, Heading, Stack, Text, ButtonGroup, SimpleGrid } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from 'react';
@@ -12,28 +12,8 @@ import Products from '../Components/Products';
 import { FiFilter } from 'react-icons/fi';
 import Pagination from '../Components/Pagination';
 
-
 function LandingPage(props) {
-
-    const username = useSelector((state) => state.dataReducer.username);
-    console.log("username dari redux :", useSelector((state) => state.dataReducer));
-
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-
-    const [isOpen, setIsOpen] = useState(false);
-    const handleOpen = () => {
-      setIsOpen(true);
-    };
-    const handleClose = () => {
-      setIsOpen(false);
-    };
-
-    function handleLogout() {
-      // handle logout logic here
-    }
-
-    const [showProducts, setShowProducts] = React.useState([]);
+const [showProducts, setShowProducts] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [size, setSize] = React.useState(6);
     const [productName, setProductName] = React.useState("");
@@ -79,68 +59,8 @@ function LandingPage(props) {
       setPage(pageNumber);
     }
 
-    return (
-
-      <>
-        <Flex bg='#537FE7' color="white" p={5}>
-          <Box flex='1'>
-            <Button leftIcon={<FaBars />} variant='unstyled' onClick={handleOpen}></Button>
-            <Drawer isOpen={isOpen} onClose={handleClose} placement="left">
-          <DrawerOverlay>
-            <DrawerContent>
-              <DrawerCloseButton />
-              <DrawerBody>
-                <DrawerBody mt='10'>
-                <Button variant='ghost'>Dashboard</Button>
-                </DrawerBody>
-                <DrawerBody>
-                  <Link to='/addproduct'>
-                    <Button variant='ghost'> Add New Product</Button>
-                  </Link> 
-                </DrawerBody>
-                <DrawerBody>
-                <Button variant='ghost'> Transaction </Button>
-                </DrawerBody>
-                <DrawerBody>
-                <Button variant='ghost'> User Management </Button>
-                </DrawerBody>
-                <DrawerBody>
-                <Button variant='ghost'> Reports </Button>
-                </DrawerBody>
-              </DrawerBody>
-            </DrawerContent>
-          </DrawerOverlay>
-        </Drawer>
-          </Box>
-
-          <Box bg='#537FE7' backgroundColor='#537FE7'>
-          <InputGroup>
-            <InputLeftElement pointerEvents="none" children={<SearchIcon color='gray.800' />} />
-            <Input type="text" placeholder="Search" bg="white" color="gray.800" />
-          </InputGroup>
-          </Box>
-
-          {
-          username ? (
-            <Menu>
-              <MenuButton background='transparent' as={Button}  >
-                {username}
-              </MenuButton>
-            </Menu>
-          ) : null
-          } 
-
-          <Box>
-          <Menu>
-            <MenuButton as={IconButton} icon={<SettingsIcon />} background='transparent' />
-          <MenuList>
-            <MenuItem color='black' onClick={() => {dispatch(logoutAction()); navigate("/", {replace:true});}}>Logout</MenuItem>
-          </MenuList>
-          </Menu>
-          </Box>
-        </Flex>
-
-
+  return (
+    <>
           {/* INI PRODUCT */}
         <Flex
             minH={'100vh'}
@@ -241,8 +161,7 @@ function LandingPage(props) {
             {/* RIGHT CONTENT */}
             <Box flex={{ base: 'none', lg: '1' }}>
             </Box>
-        </Flex>
-      
+        </Flex> 
   </>
   )
 };
