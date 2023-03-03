@@ -1,7 +1,6 @@
 import { Box, Button, Flex, Heading, Input, InputGroup } from '@chakra-ui/react';
 import React from 'react';
 import { MdOutlineShoppingCart } from 'react-icons/md';
-import TableCashier from '../Components/TableCashier';
 
 function Transaction() {
     return (
@@ -10,7 +9,7 @@ function Transaction() {
                 Transaction
             </Heading>
             <hr />
-            <Box mt={"8px"}>
+            {/* <Box mt={"8px"}>
                 <Flex alignItems={"center"}>
                     <Heading size={"sm"} fontWeight="semibold" w={"40"}>Product Name :</Heading>
                     <InputGroup w={{ sm: "40", md: "96", lg: "96" }}>
@@ -18,8 +17,7 @@ function Transaction() {
                     </InputGroup>
                     <Button ml={"8px"} type='button' fontSize={"2xl"} _hover={"none"} bgColor={"#537FE7"} style={{ color: "#E9F8F9" }} leftIcon={<MdOutlineShoppingCart />} />
                 </Flex>
-            </Box>
-            <TableCashier />
+            </Box> */}
 
         </Box >
     );

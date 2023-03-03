@@ -1,10 +1,26 @@
 import React from 'react';
 import {
-    Box, Button, Flex, Heading, Input, NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper, Table, TableContainer, Tbody, Td, Th, Thead, Tr
+    Box, Button, Flex, Heading, Input, NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr
 } from '@chakra-ui/react';
 import { MdShoppingCart } from 'react-icons/md';
+import OrderDetails from './OrderDetails';
 
-function TableCashier() {
+function TableCashier(props) {
+
+    const printAllOrder = () => {
+        return props.dataCart.map((val, idx) => {
+            console.log(`ini value name:`, val.name);
+            return <OrderDetails idx={idx + 1} name={val.name} quantity={val.qty} price={val.price} />
+        })
+    }
+
+    let total = props.dataCart.reduce((a, b) => a + b.price * b.qty, 0);
+    let grandTotal = new Intl.NumberFormat("id-ID", {
+        style: "currency",
+        currency: "IDR",
+    }).format(total)
+
+
     return (
         <Box mt={"20px"}>
             <Box bgColor={"#537FE7"} fontSize="2xl" textColor={"#E9F8F9"} borderTopRadius="lg">
@@ -14,77 +30,43 @@ function TableCashier() {
                             {<MdShoppingCart />} KASIR
                         </Flex>
                     </Box>
-                    <Button bgColor={"#181823"} _hover="none">
+                    <Button onClick={() => {
+                        props.setDataCart([])
+                    }}
+                        bgColor={"#181823"} _hover="none"
+                    >
                         RESET KERANJANG
                     </Button>
                 </Flex>
             </Box>
             <Box border={"1px"} borderColor="gray.100" borderBottomRadius={"lg"}>
                 <TableContainer m={"20px"} >
-                    <Table>
+                    <Table w={"3xl"} layout="fixed">
                         <Thead>
-                            <Tr>
-                                <Th>No</Th>
-                                <Th>Product Name</Th>
-                                <Th>Quantity</Th>
-                                <Th>Total</Th>
-                                <Th>Cashier</Th>
-                                <Th>Action</Th>
+                            <Tr w={"100%"}>
+                                <Th w={"5%"}>No</Th>
+                                <Th w={"60%"}>Product Name</Th>
+                                <Th w={"5%"}>Qty</Th>
+                                <Th w={"15%"}>Price</Th>
+                                <Th w={"15%"}>Total</Th>
+                                {/* <Th>Action</Th> */}
                             </Tr>
                         </Thead>
                         <Tbody >
-                            <Tr>
-                                <Td>1</Td>
-                                <Td>Whiskas Dry Adult 1+ Indoor</Td>
-                                <Td>
-                                    <NumberInput defaultValue={1} min={1} w={"20"}>
-                                        <NumberInputField />
-                                        <NumberInputStepper>
-                                            <NumberIncrementStepper />
-                                            <NumberDecrementStepper />
-                                        </NumberInputStepper>
-                                    </NumberInput>
-                                </Td>
-                                <Td>Rp. 10000</Td>
-                                <Td>superadmin</Td>
-                                <Td>
-                                    <Button _hover={"none"} bgColor={"#537FE7"} style={{ color: "#E9F8F9" }}>Delete</Button>
-                                </Td>
-                            </Tr>
-                            <Tr>
-                                <Td>2</Td>
-                                <Td>Whiskas Dry Adult 1+ Skin & Coat </Td>
-                                <Td>
-                                    <NumberInput defaultValue={1} min={1} w={"20"}>
-                                        <NumberInputField />
-                                        <NumberInputStepper>
-                                            <NumberIncrementStepper />
-                                            <NumberDecrementStepper />
-                                        </NumberInputStepper>
-                                    </NumberInput>
-                                </Td>
-                                <Td>Rp. 12000</Td>
-                                <Td>superadmin</Td>
-                                <Td>
-                                    <Button _hover={"none"} bgColor={"#537FE7"} style={{ color: "#E9F8F9" }}>Delete</Button>
-                                </Td>
-                            </Tr>
+                            {printAllOrder()}
                         </Tbody>
                     </Table>
                 </TableContainer>
-                <Flex justifyItems={"center"} m="20px" justifyContent={"space-evenly"}>
-                    <Flex alignItems={"center"}>
-                        <Heading size={"sm"} fontWeight="semibold" w={"40"}>Grand Total :</Heading>
-                        <Input type="text" bg="white" color="gray.800" w="96" />
-                    </Flex>
-                    <Flex alignItems={"center"} >
-                        <Heading size={"sm"} fontWeight="semibold" w={"40"}>Bayar :</Heading>
-                        <Input type="text" bg="white" color="gray.800" w="96" />
-
-                    </Flex>
-
-                    <Button leftIcon={<MdShoppingCart />} _hover={"none"} bgColor={"#537FE7"} style={{ color: "#E9F8F9" }}>Pay</Button>
-
+                <Flex alignItems={"center"} ml="5">
+                    <Heading size={"sm"} fontWeight="semibold" w={"32"}>Grand Total :</Heading>
+                    <Text disabled type="text" bg="white" color="gray.800" w="60" fontWeight={"semibold"}>
+                        {grandTotal}
+                    </Text>
+                </Flex>
+                <Flex alignItems={"center"} ml="5" my="1">
+                    <Heading size={"sm"} fontWeight="semibold" w={"32"}>Bayar :</Heading>
+                    <Input type="text" bg="white" color="gray.800" w="60" />
+                    <Button ml="1" leftIcon={<MdShoppingCart />} _hover={"none"} bgColor={"#537FE7"} style={{ color: "#E9F8F9" }}>Pay</Button>
                 </Flex>
             </Box>
         </Box>
