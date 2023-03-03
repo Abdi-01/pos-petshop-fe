@@ -12,6 +12,7 @@ import { loginAction } from './Reducers/data';
 import React from 'react';
 import AddNewUser from './Components/AddNewUser';
 import PageNotFound from './Pages/PageNotFound';
+import Transaction from './Pages/Transaction';
 
 function App() {
 
@@ -46,17 +47,18 @@ function App() {
       <Routes>
         {
           role_id == 1 ? <>
-            <Route path='/user' element={<User />} />
-            <Route path='/addnewuser' element={<AddNewUser />} />
             <Route path='/' element={<LoginPage />} />
+            <Route path='/user' element={<User />} />
             <Route path='/landing' element={<LandingPage />} />
+            <Route path='/addnewuser' element={<AddNewUser />} />
             <Route path='/addproduct' element={<AddProductPage />} />
+            <Route path='/transaction' element={<Transaction />} />
             <Route path='*' element={<PageNotFound />} />
           </> : <>
-            <Route path='/landing' element={<LandingPage />} />
-            <Route path='/addproduct' element={<AddProductPage />} />
-            <Route path='*' element={<PageNotFound />} />
             <Route path='/' element={<LoginPage />} />
+            <Route path='/landing' element={<LandingPage />} />
+            <Route path='/transaction' element={<Transaction />} />
+            <Route path='*' element={<PageNotFound />} />
           </>
         }
 
