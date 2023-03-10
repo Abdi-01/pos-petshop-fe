@@ -55,7 +55,7 @@ function LandingPage(props) {
           name={val.name}
           productimage={val.image}
           price={val.price}
-          productId={val.id}
+          product_id={val.id}
           dataCart={dataCart}
           setDataCart={setDataCart}
         />

@@ -3,8 +3,8 @@ import { Card, CardHeader, CardBody, CardFooter, Flex, Text, Spacer, Button, Ima
 
 function Products(props) {
   let find = props.dataCart.find((data, idx) => {
-    console.log(`dataproductssssssss :`, data, props.productId);
-    if (data.productId == props.productId) {
+    console.log(`dataproductssssssss :`, data, props.product_id);
+    if (data.product_id == props.product_id) {
       return true;
     } else {
       return false;
@@ -45,12 +45,12 @@ function Products(props) {
                     _hover={{ bg: '#537FE7' }}
                     _focus={{ bg: '#537FE7' }}
                     onClick={() => {
-                      let found = props.dataCart.findIndex((data) => data.productId == props.productId);
+                      let found = props.dataCart.findIndex((data) => data.product_id == props.product_id);
                       let temp = [...props.dataCart]
-                      if (temp[found].qty == 1) {
+                      if (temp[found].quantity == 1) {
                         temp.splice(found, 1)
                       } else {
-                        temp[found].qty -= 1
+                        temp[found].quantity -= 1
                       }
                       props.setDataCart(temp);
                     }}
@@ -68,9 +68,9 @@ function Products(props) {
                     _hover={{ bg: '#537FE7' }}
                     _focus={{ bg: '#537FE7' }}
                     onClick={() => {
-                      let found = props.dataCart.findIndex((data) => data.productId == props.productId);
+                      let found = props.dataCart.findIndex((data) => data.product_id == props.product_id);
                       let temp = [...props.dataCart]
-                      temp[found].qty += 1
+                      temp[found].quantity += 1
                       props.setDataCart(temp);
                     }}
                   >
@@ -82,8 +82,8 @@ function Products(props) {
 
                 <Button onClick={() => {
                   props.setDataCart([...props.dataCart, {
-                    productId: props.productId, name: props.name,
-                    qty: 1, price: props.price, uuid: props.uuid, product: props.product,
+                    product_id: props.product_id, name: props.name,
+                    quantity: 1, price: props.price, uuid: props.uuid,
                   }])
                 }}
                   type='button'
